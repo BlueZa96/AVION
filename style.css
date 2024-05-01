@@ -1,53 +1,70 @@
-body{
-    margin: 10px;
+:root{
+    --text-color: #242424;
+    --inverse-text-color: #ffffffff;
+    --inverse-text-accent-color: #f0efef;
+    --alternate-color: #726E8D;
+    --background-color: #ffffffff;
+}
+
+*{
     box-sizing: border-box;
+}
+
+html{
+    margin: 0;
+    padding: 0;
+}
+
+body{    
+    margin: 0;
     font-family: "Open Sans", sans-serif;
+}
+
+p{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 #wrapper{
     width: 1440px;
     margin: auto;
     padding: 60px;
+    padding-bottom: 0;
 }
 
+/* header open */
 #header{
     margin: auto;
     position: relative;
 }
 
 #header-text{
-    margin-top: 16px;
-    margin-bottom: 16px;
-    padding: auto;
-    width: 100%;
     display: flex;
-    box-sizing: border-box;
     align-items: center;
-    border-bottom: 0.5px solid #f0efef;
+    margin-bottom: 16px;
+    border-bottom: 0.5px solid var(--inverse-text-accent-color);
 }
 
-#header-search{
-    float: left;
-    position: relative;
-    cursor: pointer;
-    float: left;
-}
+/* #header-search{
 
+} */
 
 #header-name{
-    position: relative;
-    text-align: center;
-    float: left;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    
+    justify-content: flex-end;    
     margin-bottom: 16px;
 }
 
-
 #name-link{
-    color: black;
+    color: var(--text-color);
     cursor: pointer;
     text-decoration: none;
     font-size: 24px;
@@ -55,9 +72,9 @@ body{
 
 #header-shop-profile{
     width: 100%;
+    margin-bottom: 16px;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 16px;
 }
 
 #shop{
@@ -73,7 +90,6 @@ body{
     margin-bottom: 16px;
 }
 
-
 #header-link{
     display: flex;
     justify-content: center;
@@ -84,57 +100,55 @@ body{
     margin-left: 40px;
     position: relative;
     font-size: 16px;
-    color: #726E8D;
     text-decoration: none;
 }
+/* header close */
 
+/* Основной контент open */
 #content{
     display: flex;
     justify-content: center;
     position: relative;
     flex-wrap: nowrap;
     flex-direction: column;
-    align-items: center;
-    
-
+    align-items: center;  
 }
+/* Основной контент close */
 
-#content-one{
-    width: 1280px;
+/* main-banner первый и главный блок при входе на сайт open */
+#main-banner{
+    width: 100%;
     height: 584px;
     padding-top: 60px;
     display: flex;
     position: relative;
-    margin-bottom: 100px;
-    
-    
-    /* background-color: rgb(224, 216, 216); */
+    margin-bottom: 100px;  
 }
 
-#content-block{
+#main-banner__block{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
     width: 760px;
     padding: 60px 60px;
     background-color: #2A254B;
 }
 
-.headline-top{
+#main-banner__block__title{
     text-align: left;
     font-size: 32px;
     color: #FFFFFF;
-    margin-top: 0;
-    
-}
-.headline-bottom{
-    display: flex;
-    padding-top: 240px;
-    color: #FFFFFF;
+    margin-top: 0;    
 }
 
-.headline-btm{
+#main-banner__block__href{
     background-color: #403158; 
+    width: 260px;
     border: none;
     color: white;
     padding: 16px 32px;
+    margin-top: 35px;
+    margin-bottom: 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -144,70 +158,83 @@ body{
     border: 2px solid #403158;
 }
 
+#main-banner__block__descr-block{
+    display: flex;
+    align-items: flex-end;
+    flex-grow: 2;
+    color: #FFFFFF;
+}
+
+#main-banner__block__descr-text{
+    margin: 0;
+}
+/* main-banner close*/
+
 .headline-btm:hover{
     background-color: #2A254B;
     color: #c4c2d4;
 }
 
-#content-img{
-    width: 520px;
-    height: 584px;
+#main-banner__img{
+    height: 100%;
 }
 
-.different{
-    font-size: 24px;
-}
 
-#quality{
+/* Блок с качествами open */
+#qualities-list{
     position: relative;
     display: flex;
-
 }
 
-.quality-info{
+.quality__block{
     padding:40px 70px 130px 55px;
     font-size: 16px;
     position: relative;
 
 }
-.quality-title{
+
+.quality__title{
     font-size: 20px;
 }
+/* Блок с качествами close */
 
 
+/* Блок вывода карточек товаров */
+.card-list__title{
+    font-size: 24px;  
+}
 
-/* цена на мебель(лучше не брать этоговно дорогое) */
-
-#listings{
-    margin: 0 -16px 38px;
-    display: table;
-    flex-wrap: wrap;
+.card-list__content{
     display: flex;
 }
 
-.next{
-    text-decoration: none;
+/* Для первой карточки в списке свой отступ */
+.card-list__content a:first-child > .card{ 
+    padding-left: 0px;
+    padding-right: 15px;
 }
 
-.listings-chair{
-    padding: 16px;
+.card-list__content a > .card{
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.listings-work{
-    overflow-wrap: hidden;
+/* Для последней карточки в списке тоже свой отступ */
+.card-list__content a:last-child > .card{
+    padding-left: 15px;
+    padding-right: 0px;
 }
 
-.listings-img{
+.card-img{
     width: 305px;
     height: 375px;
 }
 
-.listings-content{
+.card-content{
     padding:16px 0px;
-
 }
 
-.listings-title{
+.card-title{
     display: flex;
     justify-content: space-between;
     font-size: 20px;
@@ -215,39 +242,24 @@ body{
     margin-bottom: 16px;
 }
 
-.listings-price{
+.card-price{
     font-size: 18px;
 }
 
-.headline{
-    margin-bottom: 0;
-    font-size: 32px;
-    width: 330px;
-    height: 45px;
-    padding: 30px 1130px 30px 140px;
 
-    /* display: flex;
-    font-size: 32px;
-    padding-right: 1130px;
-    padding-bottom: 30px;
-    padding-top: 30px;  */
-    
-
+.card-list{
+    margin: 0;
+    padding: 0;
 }
 
-.headline-btn-two{
+.card-list__check-btn{
     background-color: #F9F9F9; 
     border: none;
-    color: rgb(48, 45, 45);
     padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
     cursor: pointer;
-    display: flex;
-    margin-bottom: 52px;
+    margin-bottom: 50px;
 }
 
 .sofa{
@@ -256,10 +268,8 @@ body{
 }
 #registration{
     display: flex;
-    width: 1440px;
     height: 481px;
-    background-color: #F9F9F9;
-    
+    background-color: #F9F9F9;    
 }
 
 #fon-registration{
@@ -337,15 +347,12 @@ body{
 }
 
 #content-two{
-    width: 1440px;
     height: 603px;
-    padding-top: 60px;
     display: flex;
     position: relative;
     margin-bottom: 0;
 }
 #content-block-two{
-    width: 760px;
     padding: 72px 84px;
     background-color: #ffffff;
 }
@@ -384,40 +391,39 @@ body{
 }
 
 #content-img-two{
-    width: 720px;
+    width: 100%;
     height: 603px;
 }
 
-#content-end{
-    width: 1440px;
-    height: 380px;
-    margin: auto;
-    margin-bottom: 10px;
-    background-color:#2A254B;
+#footer__content{
     display: flex;
-    
-    
+    flex-direction: column;
+    background-color:#2A254B;
 }
 
-.content-end-one{
+#footer__content__nav{
+    width: 100%;
+    height: 320px;
+    margin: auto;
+    display: flex;  
+}
+
+.footer__content__nav__column{
     margin: auto 0;
     margin-left: 82px;
     margin-top: 58px;
     display: flex;
     flex-direction: column;
     color: #FFFFFF;
-    
 }
 
-.content-end-link{
+.footer__content__nav__link{
     margin-bottom: 18px;
     position: relative;
     font-size: 14px;
     color: #ffffff;
     text-decoration: none;
 }
-
-
 
 .email-btn-two{
     width: 215px;
@@ -435,8 +441,7 @@ body{
     margin: -6px;
     font-size: 16px;
 }
-#content-fon-registration{
-    
+#content-fon-registration{    
     display: flex;
     margin-left: 82px;
     margin-top: 58px;
@@ -462,25 +467,25 @@ body{
     margin-left: 0;
 }
 
-.conetnt-trait{
+.footer__content__trail{
     display: flex;
     color: #ffffff;
     background-color:#2A254B;
-    margin: 82px;
-    margin-top: -72px;
     border-top: 0.5px solid #4E4D93;
     font-size: 14px;
+    margin-left: 82px;
+    margin-right: 82px;
 }
 
-.conetnt-trait__label{
+.footer__content__description{
     flex-grow: 2;
 }
 
-.conetnt-trait__messengers{
+.footer__content__trail__contacts{
     display: flex;
     align-items: center;
 }
-.conetnt-trait__messengers__icon{
+.footer__content__trail__contacts__icon{
     padding-left: 24px;
     font-size: 24px;
 }
@@ -496,26 +501,24 @@ a::after{
     left: 0;
     width: 0;
     height: 2px;
-    color: #FFFFFF;
+    color: var(--inverse-text-color);
     content: "";
     
 }
 
-.underline-animation {
-    
+.underline-animation {    
     display: inline-block;
     position: relative;
 }
   
-.underline-animation::after {
-    
+.underline-animation::after {    
     content: '';
     position: absolute;
     width: 95%;
     height: 1px;
     bottom: -5px;
     left: 0;
-    background-color: white;
+    background-color: var(--background-color);
     transform: scaleX(0);
     transform-origin: bottom left;
     transition: transform 0.3s ease-out;
@@ -525,27 +528,20 @@ a::after{
     transform: scaleX(1);
 }
 
-/* .clicked-a2:hover{
-    cursor: pointer;
-    border-bottom: solid 1px white;
-    
-} */
-
 .underline-animation-black {
     
     display: inline-block;
     position: relative;
 }
   
-.underline-animation-black::after {
-    
+.underline-animation-black::after {    
     content: '';
     position: absolute;
     width: 100%;
     height: 1px;
     bottom: -5px;
     left: 0;
-    background-color: black;
+    background-color: var(--text-color);
     transform: scaleX(0);
     transform-origin: bottom left;
     transition: transform 0.3s ease-out;
@@ -554,14 +550,3 @@ a::after{
 .underline-animation-black:hover::after {
     transform: scaleX(1);
 }
-
-
-
-
-
-
-
-/* .headline-btn-two:hower{
-    background-color: #2A254B;
-    color: #c4c2d4;
-} */
