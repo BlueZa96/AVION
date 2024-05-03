@@ -242,6 +242,11 @@ a{
     margin-bottom: 16px;
 }
 
+.card-description{
+    width: 100%;
+    text-wrap: wrap;
+}
+
 .card-price{
     font-size: 18px;
 }
@@ -379,12 +384,6 @@ a{
     
 }
 
-/* .knopka{
-    display: flex;
-    padding: 200px 0px 0px 0px;
-    margin-bottom: ;
-} */
-
 .headline-bottom-two{
     
     color: #2A254B;
@@ -426,7 +425,6 @@ a{
 }
 
 .email-btn-two{
-    width: 215px;
     height: 56px;
     background-color: #FFFFFF; 
     border: none;
@@ -439,7 +437,7 @@ a{
     transition-duration: 0.4s;
     cursor: pointer;
     margin: -6px;
-    font-size: 16px;
+    font-size: 14px;
 }
 #content-fon-registration{    
     display: flex;
@@ -453,7 +451,7 @@ a{
     color: #FFFFFF;
 }
 .input-style-two{
-    width: 354px;
+    width: 265px;
     height: 56px;
     outline: 0;
     background-color: #4E4D93;
