@@ -4,15 +4,17 @@ const productsType = {
     new: "new"
 };
 
+const apiUrl = '/api/';
+
 // Определение функции для получения продуктов по ID
 function fetchProductsByID(product_id) {
-    return fetch("http://0.0.0.0:8000/" + product_id)
+    return fetch(apiUrl + product_id)
     .then(response => response.json()); 
 }
 
 // Определение функции для получения всех продуктов
 function fetchProductsByType(productsType) {
-    return fetch("http://0.0.0.0:8000/products/" + productsType)
+    return fetch(apiUrl + "products/" + productsType)
     .then(response => response.json()); 
 }
 
@@ -37,7 +39,7 @@ function createHTMLCardList(outputHTMLID, products){
     
     products.map((product) => {
 
-        imagesBackendURL = "http://0.0.0.0:8000/res/";
+        imagesBackendURL = apiUrl + "res/";
 
         const imgSrc = imagesBackendURL + product.id;
 
