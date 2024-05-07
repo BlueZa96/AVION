@@ -1,90 +1,64 @@
-// Определение функции для получения продуктов
-function fetchProducts(product_id) {
+const productsType = {
+    default: "default",
+    pop: "popular",
+    new: "new"
+};
+
+// Определение функции для получения продуктов по ID
+function fetchProductsByID(product_id) {
     return fetch("http://0.0.0.0:8000/" + product_id)
     .then(response => response.json()); 
 }
 
-function renderNewProductList(products){
+// Определение функции для получения всех продуктов
+function fetchProductsByType(productsType) {
+    return fetch("http://0.0.0.0:8000/products/" + productsType)
+    .then(response => response.json()); 
+}
 
-    let htmlBlock = document.getElementById('card-list-news');
-    
-    products.map((product) => {
-
-        imagesBackendURL = "http://0.0.0.0:8000/res/";
-        const imgSrc = imagesBackendURL + product.id;
-
-        const productBlock = document.createElement('a');
-        productBlock.innerHTML = `
+function createHTMLCardBlock(title, price, imgSrc){
+    const cardBlock = document.createElement('a');
+    cardBlock.innerHTML = `
         <a class="clicked-a" href="#">
             <div class="card">
                 <img class="card-img" src="${imgSrc}" alt="">
                 <div class="card-content">
-                    <div class="card-title">${product.title}</div>
-                    <div class="card-price">${product.price}₽</div>
+                    <div class="card-title">${title}</div>
+                    <div class="card-price">${price}₽</div>
                 </div>
             </div>
         </a>
         `;
+    return cardBlock;
+}
+
+function createHTMLCardList(outputHTMLID, products){
+    let htmlBlock = document.getElementById(outputHTMLID);
+    
+    products.map((product) => {
+
+        imagesBackendURL = "http://0.0.0.0:8000/res/";
+
+        const imgSrc = imagesBackendURL + product.id;
+
+        const productBlock = createHTMLCardBlock(product.title, product.price, imgSrc)        
 
         htmlBlock.insertAdjacentElement('afterbegin', productBlock);
-    })    
+    })   
+}
+
+function renderNewProductList(products){
+    createHTMLCardList('card-list-news', products);
 }
 
 function renderPopProductList(products){
-    
-    let htmlBlock = document.getElementById('card-list-pop');
-    
-    products.map((product) => {
-
-        imagesBackendURL = "http://0.0.0.0:8000/res/";
-        const imgSrc = imagesBackendURL + product.id;
-
-        const productBlock = document.createElement('a');
-        productBlock.innerHTML = `
-        <a class="clicked-a" href="#">
-            <div class="card">
-                <img class="card-img" src="${imgSrc}" alt="">
-                <div class="card-content">
-                    <div class="card-title">${product.title}</div>
-                    <div class="card-price">${product.price}₽</div>
-                </div>
-            </div>
-        </a>
-        `;
-
-        htmlBlock.insertAdjacentElement('afterbegin', productBlock);
-    })    
+    createHTMLCardList('card-list-pop', products);
 }
 
 // Самовызывающаяся функция, которая ждёт результат fetchProducts
 (async function afterStart() {
-
-    const newProducts = [];
-
-    const news1 = await fetchProducts(2);
-    newProducts.push(news1);
-    const news2 = await fetchProducts(3);
-    newProducts.push(news2);
-    const news3 = await fetchProducts(4);
-    newProducts.push(news3);
-    const news4 = await fetchProducts(5);
-    newProducts.push(news4);
-
-
-    const popProducts = [];
-
-    const pop1 = await fetchProducts(6);
-    popProducts.push(pop1);
-    const pop2 = await fetchProducts(7);
-    popProducts.push(pop2);
-    const pop3 = await fetchProducts(8);
-    popProducts.push(pop3);
-    const pop4 = await fetchProducts(9);
-    popProducts.push(pop4);
-
-
-    console.log(newProducts);  
-    console.log(popProducts); 
+    const newProducts = await fetchProductsByType(productsType.new);
+    const popProducts = await fetchProductsByType(productsType.pop);
 
     renderNewProductList(newProducts);
     renderPopProductList(popProducts);
